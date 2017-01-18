@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "JavaScript development environment by @lomboboo",
   "scripts": {
-
+    "start": "npm-run-all --parallel security-check",
+    "security-check": "nsp check",
+    "share": "lt --port 80 --subdomain lomboboo"
   },
-  "author": "ROman Prokopchuk",
+  "author": "Roman Prokopchuk",
   "license": "MIT",
   "dependencies": {
     "whatwg-fetch": "1.0.0"
