@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "JavaScript development environment by @lomboboo",
   "scripts": {
-    "start": "npm-run-all --parallel security-check",
+    "start": "npm-run-all --parallel security-check webpack-dev-server",
+    "webpack-dev-server": "webpack-dev-server --content-base src/ --port 8000",
     "security-check": "nsp check",
     "share": "lt --port 80 --subdomain lomboboo"
   },
   "author": "Roman Prokopchuk",
   "license": "MIT",
   "dependencies": {
+    "webpack-dev-server": "^1.16.2",
     "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
