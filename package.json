@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "JavaScript development environment by @lomboboo",
   "scripts": {
-    "start": "npm-run-all --parallel security-check webpack-dev-server",
+    "start": "npm-run-all --parallel security-check webpack-dev-server eslint:watch",
     "webpack-dev-server": "webpack-dev-server --content-base src/ --port 8000",
     "security-check": "nsp check",
-    "share": "lt --port 80 --subdomain lomboboo"
+    "share": "lt --port 80 --subdomain lomboboo",
+    "eslint": "esw webpack.config.* src build --color",
+    "eslint:watch": "npm run eslint -- --watch"
   },
   "author": "Roman Prokopchuk",
   "license": "MIT",
