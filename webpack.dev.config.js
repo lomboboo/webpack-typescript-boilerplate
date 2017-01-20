@@ -4,12 +4,15 @@ module.exports = {
   entry: {
     app: ["./src/main.js"]
   },
+
   output: {
     path: path.resolve(__dirname, "build"),
     publicPath: "/build/",
     filename: "bundle.js"
   },
+
   module: {
+
     loaders: [
       {
         test: /\.js$/,
@@ -20,10 +23,11 @@ module.exports = {
         }
       }
     ]
+
   },
 
   devServer: {
-    contentBase: __dirname + "/src",
+    contentBase: __dirname + "/",
     port: 8000,
     hot: true
   },

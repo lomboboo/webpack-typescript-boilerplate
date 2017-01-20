@@ -1,4 +1,5 @@
 const path    = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   entry: {
@@ -6,7 +7,6 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "build"),
-    publicPath: "/build/",
     filename: "bundle.js"
   },
   module: {
@@ -21,4 +21,14 @@ module.exports = {
       }
     ]
   },
+
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        drop_console: true,
+        unsafe: true
+      },
+    })
+  ]
 };

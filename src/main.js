@@ -1,5 +1,7 @@
-import numeral from 'numeral';
+import $ from 'jquery';
 
-const number = numeral(1000).format('0,0');
+let h1 = $('h1');
+const charsNumber = h1.text().length;
+h1.append(` - ${charsNumber} symbols`);
 
-console.log( `Numeral says loudly: ${number}` );
+console.log( `H1 has: ${charsNumber} symbols` );
