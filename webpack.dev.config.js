@@ -21,4 +21,12 @@ module.exports = {
       }
     ]
   },
+
+  devServer: {
+    contentBase: __dirname + "/src",
+    port: 8000,
+    hot: true
+  },
+
+  devtool: "eval-source-map"
 };
