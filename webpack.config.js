@@ -1,6 +1,6 @@
-const path    = require("path");
-const webpack = require("webpack");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path              = require("path");
+const webpack           = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -22,16 +22,17 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract(
-          // activate source maps via loader query
-          'css?sourceMap!' +
-          'less?sourceMap'
-        )
+        loader: 'style/useable!css?sourceMap!postcss-loader!less-loader?sourceMap=true'
+      },
+      {
+        test:   /\.css$/,
+        loader: "style-loader!css-loader!postcss-loader"
       }
     ]
   },
 
   plugins: [
+    // Minify JS
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
@@ -39,6 +40,30 @@ module.exports = {
         unsafe: true
       },
     }),
-    new ExtractTextPlugin('styles.css')
-  ]
+
+    //Eliminates duplicate packages when generating bundle
+    new webpack.optimize.DedupePlugin(),
+
+    // Create HTML file that includes reference to bundled JS.
+    new HtmlWebpackPlugin({
+      filename: '../index.html',
+      template: './src/index.html',
+      favicon: './favicon.png',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      },
+      inject: true
+    })
+  ],
+
+  devtool: "source-map"
 };

@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "description": "JavaScript development environment by @lomboboo",
   "scripts": {
-    "start": "npm-run-all --parallel security-check webpack-dev-server eslint:watch test:watch",
+    "start": "npm-run-all --parallel clean-build security-check webpack-dev-server eslint:watch test:watch",
     "webpack-dev-server": "webpack-dev-server --config=./webpack.dev.config.js --hot --inline",
     "security-check": "nsp check",
     "share": "lt --port 80 --subdomain lomboboo",
     "eslint": "esw webpack.config.* src build --color",
     "eslint:watch": "npm run eslint -- --watch",
     "test": "mocha --reporter progress ./mocha.setup.js \"./src/**/*.test.js\" ",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "clean-build": "rimraf ./build",
+    "prebuild": "npm-run-all clean-build security-check eslint test",
+    "build": "webpack"
   },
   "author": "Roman Prokopchuk",
   "license": "MIT",
