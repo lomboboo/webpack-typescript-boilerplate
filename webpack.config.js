@@ -1,5 +1,6 @@
 const path    = require("path");
 const webpack = require("webpack");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -18,6 +19,14 @@ module.exports = {
         query: {
           presets: ['es2015']
         }
+      },
+      {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract(
+          // activate source maps via loader query
+          'css?sourceMap!' +
+          'less?sourceMap'
+        )
       }
     ]
   },
@@ -29,6 +38,7 @@ module.exports = {
         drop_console: true,
         unsafe: true
       },
-    })
+    }),
+    new ExtractTextPlugin('styles.css')
   ]
 };

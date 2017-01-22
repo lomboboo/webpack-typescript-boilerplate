@@ -1,3 +1,6 @@
+import css from './assets/less/style.less';
+css.use();
+
 import $ from 'jquery';
 
 let h1 = $('h1');

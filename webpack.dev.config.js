@@ -1,4 +1,4 @@
-const path    = require("path");
+const path              = require("path");
 
 module.exports = {
   entry: {
@@ -21,6 +21,14 @@ module.exports = {
         query: {
           presets: ['es2015']
         }
+      },
+      {
+        test: /\.less$/,
+        loader: 'style/useable!css?sourceMap!postcss-loader!less-loader?sourceMap=true'
+      },
+      {
+        test:   /\.css$/,
+        loader: "style-loader!css-loader!postcss-loader"
       }
     ]
 
@@ -32,5 +40,5 @@ module.exports = {
     hot: true
   },
 
-  devtool: "eval-source-map"
+  devtool: "source-map"
 };
