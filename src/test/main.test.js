@@ -9,7 +9,7 @@ describe("Main module", ()=>{
 
 });
 
-/*describe("index.html h1", ()=>{
+describe("index.html h1", ()=>{
 
   it("should return modified h1 value", (done)=>{
 
@@ -32,4 +32,4 @@ describe("Main module", ()=>{
 
   });
 
-});*/
+});
