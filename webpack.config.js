@@ -45,7 +45,7 @@ module.exports = {
     new webpack.optimize.DedupePlugin(),
 
     // Create HTML file that includes reference to bundled JS.
-    new HtmlWebpackPlugin({
+    /*new HtmlWebpackPlugin({
       filename: '../index.html',
       template: './src/index.html',
       favicon: './favicon.png',
@@ -62,7 +62,7 @@ module.exports = {
         minifyURLs: true
       },
       inject: true
-    })
+    })*/
   ],
 
   devtool: "source-map"
