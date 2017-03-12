@@ -1,50 +1,88 @@
-const path = require("path");
+const path = require( "path" );
+const webpack = require( 'webpack' );
+const autoprefixer = require( 'autoprefixer' );
+const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+
+console.log( "==============================DEVELOPMENT================================" );
 
 module.exports = {
-	entry: {
-		app: ["./src/main.js"]
-	},
+  entry: {
+    app: [ "./src/main.ts" ]
+  },
 
-	output: {
-		path: path.resolve(__dirname, "build"),
-		publicPath: "http://localhost:8000/build/",
-		filename: "bundle.js"
-	},
+  output: {
+    path: path.resolve( __dirname, "build" ),
+    publicPath: "/build",
+    filename: "bundle.js"
+  },
 
-	module: {
+  resolve: {
+    extensions: [ '.ts', '.js', '.json', '.css', '.less', '.html' ]
+  },
 
-		loaders: [
-			{
-				test: /\.js$/,
-				exclude: /(node_modules)/,
-				loader: 'babel-loader',
-				query: {
-					presets: ['es2015']
-				}
-			},
-			{
-				test: /\.less$/,
-				loader: 'style/useable!css?sourceMap!postcss-loader!less-loader?sourceMap=true'
-			},
-			{
-				test: /\.css$/,
-				loader: "style-loader!css-loader!postcss-loader"
-			}
-		]
+  module: {
 
-	},
+    rules: [
+      {
+        test: /\.ts$/,
+        loaders: [ 'awesome-typescript-loader' ],
+        exclude: [ /\.(spec)\.ts$/, /(node_modules)/ ]
+      },
+      {
+        test: /\.js$/,
+        exclude: [ /node_modules/ ],
+        use: [ {
+          loader: 'babel-loader',
+          options: { presets: [ 'es2015' ] }
+        } ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader'
+          }
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract( {
+          fallbackLoader: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: { sourceMap: true, importLoaders: 1 }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: function () {
+                  return [
+                    require( 'autoprefixer' )
+                  ];
+                }
+              }
+            },
+            'less-loader',
+          ]
+        } )
+      }
+    ]
 
-	devServer: {
-		contentBase: __dirname + "/",
-		port: 8000,
-		proxy: [
-			{
-				path: '/',
-				target: "http://localhost/js-boilerplate"
-			}
-		],
-		hot: true
-	},
+  },
 
-	devtool: "inline-source-map"
+  plugins: [
+    new ExtractTextPlugin( { filename: '[name].css' } )
+  ],
+
+  devServer: {
+    port: 8000,
+    contentBase: "./src",
+    compress: true
+  },
+
+  devtool: "inline-source-map"
 };

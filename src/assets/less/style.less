@@ -1,5 +1,4 @@
 @import '../css/animate.css';
-@import "./reset.less";
 /***********************************************/
                 /* COLORS */
 /***********************************************/
@@ -21,14 +20,9 @@
   box-shadow: @shadow;
 }
 
-.background ( @file, @repeat: no-repeat, @attachment: scroll, @position-vert: 0, @position-hor: 0, @color: transparent ) {
-  background: url('../img/@{file}') @repeat @attachment @position-vert @position-hor @color;
-}
-
 .transition ( @transition: all 0.5s ease-in-out) {
   -webkit-transition: @transition;
   -moz-transition: @transition;
-  -ms-transition: @transition;
   -o-transition: @transition;
 }
 
@@ -128,4 +122,5 @@ body {
 h1 {
   color: #0F9E5E;
   display: flex;
+  box-sizing: border-box;
 }
