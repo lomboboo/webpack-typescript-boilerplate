@@ -1,4 +1,4 @@
-import './assets/less/style.less';
+import './stylesheets/style.less';
 
 import * as $ from 'jquery';
 
