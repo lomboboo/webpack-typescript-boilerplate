@@ -13,7 +13,7 @@
     "test:watch": "npm run test -- --watch",
     "clean-build": "rimraf ./build",
     "prebuild": "npm-run-all clean-build security-check eslint test",
-    "build": "webpack"
+    "build": "webpack --config=./webpack.prod.config.js"
   },
   "author": "Roman Prokopchuk",
   "license": "MIT",
@@ -50,12 +50,15 @@
     "npm-run-all": "3.1.1",
     "nsp": "2.6.2",
     "open": "0.0.5",
+    "optimize-css-assets-webpack-plugin": "^1.3.0",
     "postcss-loader": "^1.2.2",
     "rimraf": "2.5.4",
     "style-loader": "0.13.1",
     "typescript": "^2.2.1",
+    "uglifyjs-webpack-plugin": "^0.3.0",
     "webpack": "2.2.1",
     "webpack-dev-server": "^1.16.3",
-    "webpack-md5-hash": "0.0.5"
+    "webpack-md5-hash": "0.0.5",
+    "webpack-merge": "^4.0.0"
   }
 }
