@@ -19,12 +19,16 @@ module.exports = function () {
     },
 
     resolve: {
-      extensions: [ '.ts', '.js', '.json', '.css', '.less', '.html' ]
+      extensions: [ '.ts', '.js', '.json', '.css', '.less', '.html', '.hbs' ]
     },
 
     module: {
 
       rules: [
+        {
+          test: /\.hbs$/,
+          loaders: [ 'handlebars-loader' ]
+        },
         {
           test: /\.ts$/,
           loaders: [ 'awesome-typescript-loader' ],
@@ -76,7 +80,7 @@ module.exports = function () {
 
     plugins: [
       new HtmlWebpackPlugin( {
-        template: path.join( __dirname, 'src/index.html' )
+        template: path.join( __dirname, 'src/index.hbs' )
       } ),
       new ExtractTextPlugin( { filename: '[name].css' } )
     ],
