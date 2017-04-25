@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JavaScript development environment by @lomboboo",
   "scripts": {
-    "start": "npm-run-all --parallel clean-build security-check webpack-dev-server eslint:watch test:watch",
+    "start": "NODE_ENV='dev' npm-run-all --parallel clean-build security-check webpack-dev-server eslint:watch test:watch",
     "webpack-dev-server": "webpack-dev-server --config=./webpack.dev.config.js --hot --inline",
     "security-check": "nsp check",
     "share": "lt --port 80 --subdomain lomboboo",
@@ -13,15 +13,17 @@
     "test:watch": "npm run test -- --watch",
     "clean-build": "rimraf ./build",
     "prebuild": "npm-run-all clean-build security-check eslint test",
-    "build": "webpack --config=./webpack.prod.config.js"
+    "build": "NODE_ENV='prod' webpack --config=./webpack.prod.config.js"
   },
   "author": "Roman Prokopchuk",
   "license": "MIT",
   "dependencies": {
-    "jquery": "^3.1.1"
+    "jquery": "^3.1.1",
+    "moment": "^2.17.1"
   },
   "devDependencies": {
     "@types/jquery": "^2.0.40",
+    "@types/node": "^7.0.13",
     "awesome-typescript-loader": "^3.0.8",
     "babel-cli": "6.16.0",
     "babel-core": "6.17.0",
@@ -31,6 +33,7 @@
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "cheerio": "^0.22.0",
+    "chunk-manifest-webpack-plugin": "^1.0.0",
     "compression": "1.6.2",
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "3.1.3",
@@ -62,6 +65,7 @@
     "webpack": "2.2.1",
     "webpack-dev-server": "^1.16.3",
     "webpack-md5-hash": "0.0.5",
-    "webpack-merge": "^4.0.0"
+    "webpack-merge": "^4.0.0",
+    "webpack-stable-module-id-and-hash": "^1.0.5"
   }
 }

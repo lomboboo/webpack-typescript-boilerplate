@@ -4,18 +4,23 @@ const autoprefixer = require( 'autoprefixer' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 
+const ENV = process.env.NODE_ENV;
+console.log( `ENVIRONMENT -------------------- ${ENV}` );
+
 console.log( "==============================COMMON================================" );
 
 module.exports = function () {
   return {
     entry: {
+      vendor: [ "moment", "jquery" ],
       app: [ "./src/main.ts" ]
     },
 
     output: {
       path: path.resolve( __dirname, "build" ),
       publicPath: '',
-      filename: "bundle.js"
+      filename: "[name]-[hash].js",
+      chunkFilename: "[name]-[id]-[hash].js"
     },
 
     resolve: {
@@ -82,7 +87,19 @@ module.exports = function () {
       new HtmlWebpackPlugin( {
         template: path.join( __dirname, 'src/index.hbs' )
       } ),
-      new ExtractTextPlugin( { filename: '[name].css' } )
+      new ExtractTextPlugin( { filename:'[name]-[hash].css', } ),
+      new webpack.NamedModulesPlugin(),
+      new webpack.optimize.CommonsChunkPlugin({
+        name: "vendor",
+        minChunks: function(module){
+          return module.context && module.context.indexOf("node_modules") !== -1;
+        }
+      }),
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify(ENV)
+        }
+      })
     ],
 
     devtool: "source-map"
