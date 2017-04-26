@@ -14,7 +14,7 @@ module.exports = function () {
     context: path.resolve(__dirname, "src"),
 
     entry: {
-      vendor: [ "moment", "jquery" ],
+      vendor: [ "moment", "jquery", "lodash" ],
       app: [ "./main.ts" ]
     },
 
@@ -43,6 +43,9 @@ module.exports = function () {
         },
         {
           test: /\.css$/,
+          exclude: [
+            path.resolve(__dirname, "src/public/font/font-awesome"),
+          ],
           use: [
             {
               loader: 'css-loader',
@@ -55,6 +58,9 @@ module.exports = function () {
         },
         {
           test: /\.less$/,
+          exclude: [
+            path.resolve(__dirname, "src/public/font/font-awesome"),
+          ],
           use: ExtractTextPlugin.extract( {
             fallbackLoader: 'style-loader',
             use: [
