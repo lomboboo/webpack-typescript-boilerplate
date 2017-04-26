@@ -98,8 +98,9 @@ module.exports = function () {
         'process.env': {
           NODE_ENV: JSON.stringify(ENV)
         }
-      })
-    ],
+      }),
+      new webpack.ContextReplacementPlugin(/node_modules\/moment\/locale/, /pl|en-gb/),
+  ],
 
     devtool: "source-map"
   };

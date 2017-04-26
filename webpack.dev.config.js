@@ -8,7 +8,7 @@ module.exports = function () {
 
     devServer: {
       port: 8000,
-      stats: 'minimal',
+      //stats: 'minimal',
       contentBase: path.join(__dirname, 'src'),
       compress: true
     },
