@@ -30,7 +30,7 @@ module.exports = function () {
     },
 
     module: {
-
+      noParse: /(node_modules)/,
       rules: [
         {
           test: /\.hbs$/,
