@@ -11,9 +11,11 @@ console.log( "==============================COMMON==============================
 
 module.exports = function () {
   return {
+    context: path.resolve(__dirname, "src"),
+
     entry: {
       vendor: [ "moment", "jquery" ],
-      app: [ "./src/main.ts" ]
+      app: [ "./main.ts" ]
     },
 
     output: {
@@ -90,10 +92,7 @@ module.exports = function () {
       new ExtractTextPlugin( { filename:'[name]-[hash].css', } ),
       new webpack.NamedModulesPlugin(),
       new webpack.optimize.CommonsChunkPlugin({
-        name: "vendor",
-        minChunks: function(module){
-          return module.context && module.context.indexOf("node_modules") !== -1;
-        }
+        name: "vendor"
       }),
       new webpack.DefinePlugin({
         'process.env': {
