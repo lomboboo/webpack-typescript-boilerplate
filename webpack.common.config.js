@@ -14,15 +14,14 @@ module.exports = function () {
     context: path.resolve(__dirname, "src"),
 
     entry: {
-      vendor: [ "moment", "jquery", "lodash" ],
-      app: [ "./main.ts" ]
+      app: [ "./main.ts" ],
+      vendor: [ "moment", "jquery", "lodash" ]
     },
 
     output: {
       path: path.resolve( __dirname, "build" ),
       publicPath: '',
-      filename: "[name]-[hash].js",
-      chunkFilename: "[name]-[id]-[hash].js"
+      filename: "[name].[chunkhash].js"
     },
 
     resolve: {
@@ -30,7 +29,7 @@ module.exports = function () {
     },
 
     module: {
-      noParse: /(node_modules)/,
+      noParse: /\/node_modules\/(jquery|lodash|moment)/,
       rules: [
         {
           test: /\.hbs$/,
@@ -39,7 +38,7 @@ module.exports = function () {
         {
           test: /\.ts$/,
           loaders: [ 'awesome-typescript-loader' ],
-          exclude: [ /(node_modules)/ ]
+          include: path.resolve(__dirname, "src")
         },
         {
           test: /\.css$/,
@@ -98,7 +97,7 @@ module.exports = function () {
       new ExtractTextPlugin( { filename:'[name]-[hash].css', } ),
       new webpack.NamedModulesPlugin(),
       new webpack.optimize.CommonsChunkPlugin({
-        name: "vendor"
+        name: [ "vendor", 'manifest']
       }),
       new webpack.DefinePlugin({
         'process.env': {
