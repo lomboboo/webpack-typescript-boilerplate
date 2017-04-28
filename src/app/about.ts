@@ -1,6 +1,6 @@
-import '../stylesheets/about';
-import * as $ from 'jquery';
+import * as $ from "jquery";
 
-import { newArr } from './support';
+import "../stylesheets/about";
+import { newArr } from "./support";
 
-$('h1').text(`About page: \n ${newArr}`);
+$("h1").text(`About page: \n ${newArr}`);

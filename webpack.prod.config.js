@@ -10,6 +10,24 @@ const webpackCommon = require( './webpack.common.config' );
 module.exports = function () {
   return webpackMerge( webpackCommon(), {
 
+    module: {
+      rules: [
+        {
+          test: /\.ts$/,
+          enforce: 'pre',
+          loader: 'tslint-loader',
+          options: {
+            emitErrors: true,
+            failOnHint: true,
+            configFile: 'tslint.json',
+            tsConfigFile: 'tsconfig.json'
+          }
+        }
+      ]
+    },
+
+    bail: true,
+
     plugins: [
       new OptimizeCssAssetsPlugin( {
         cssProcessorOptions: {

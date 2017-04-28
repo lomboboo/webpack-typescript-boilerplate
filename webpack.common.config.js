@@ -43,6 +43,15 @@ module.exports = function () {
           include: path.resolve( __dirname, "src/app" )
         },
         {
+          test: /\.ts$/,
+          enforce: 'pre',
+          loader: 'tslint-loader',
+          options: {
+            configFile: 'tslint.json',
+            tsConfigFile: 'tsconfig.json'
+          }
+        },
+        {
           test: /\.css$/,
           exclude: [
             path.resolve( __dirname, "src/public/font/font-awesome" ),
