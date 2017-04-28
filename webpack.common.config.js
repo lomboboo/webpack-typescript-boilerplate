@@ -5,23 +5,25 @@ const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 
 const ENV = process.env.NODE_ENV;
-console.log( `ENVIRONMENT -------------------- ${ENV}` );
-
-console.log( "==============================COMMON================================" );
+const ENV_msg = ENV === 'prod' ? 'PRODUCTION' : ( ENV === 'dev' ? 'DEVELOPMENT' : 'TEST');
+console.log( `--------------------------------------------------------------------------------------------------------------------` );
+console.log( `----------------------------------------------------- ${ENV_msg} ---------------------------------------------------` );
+console.log( `--------------------------------------------------------------------------------------------------------------------` );
 
 module.exports = function () {
   return {
-    context: path.resolve(__dirname, "src"),
+    context: path.resolve( __dirname, "src/app" ),
 
     entry: {
-      app: [ "./main.ts" ],
+      index: [ "./index.ts" ],
+      about: [ "./about.ts" ],
       vendor: [ "moment", "jquery", "lodash" ]
     },
 
     output: {
       path: path.resolve( __dirname, "build" ),
-      publicPath: '',
-      filename: "[name].[chunkhash].js"
+      publicPath: '/',
+      filename: "js/[name].[chunkhash].js"
     },
 
     resolve: {
@@ -38,12 +40,12 @@ module.exports = function () {
         {
           test: /\.ts$/,
           loaders: [ 'awesome-typescript-loader' ],
-          include: path.resolve(__dirname, "src")
+          include: path.resolve( __dirname, "src" )
         },
         {
           test: /\.css$/,
           exclude: [
-            path.resolve(__dirname, "src/public/font/font-awesome"),
+            path.resolve( __dirname, "src/public/font/font-awesome" ),
           ],
           use: [
             {
@@ -58,7 +60,7 @@ module.exports = function () {
         {
           test: /\.less$/,
           exclude: [
-            path.resolve(__dirname, "src/public/font/font-awesome"),
+            path.resolve( __dirname, "src/public/font/font-awesome" ),
           ],
           use: ExtractTextPlugin.extract( {
             fallbackLoader: 'style-loader',
@@ -87,25 +89,32 @@ module.exports = function () {
           } )
         }
       ]
-
     },
 
     plugins: [
       new HtmlWebpackPlugin( {
-        template: path.join( __dirname, 'src/index.hbs' )
+        filename: 'index.html',
+        chunks: [ "common", "vendor", "manifest", "index" ],
+        template: path.join( __dirname, "src/index.hbs" )
       } ),
-      new ExtractTextPlugin( { filename:'[name]-[hash].css', } ),
+      new HtmlWebpackPlugin( {
+        filename: 'about.html',
+        chunks: [ "common", "vendor", "manifest", "about" ],
+        template: path.join( __dirname, "src/about.hbs" )
+      } ),
+      new ExtractTextPlugin( { filename: "css/[name]-[hash].css", } ),
       new webpack.NamedModulesPlugin(),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: [ "vendor", 'manifest']
-      }),
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify(ENV)
+      new webpack.optimize.CommonsChunkPlugin( {
+        name: [ "common", "vendor", "manifest" ],
+        chunksSortMode: "dependency"
+      } ),
+      new webpack.DefinePlugin( {
+        "process.env": {
+          NODE_ENV: JSON.stringify( ENV )
         }
-      }),
-      new webpack.ContextReplacementPlugin(/node_modules\/moment\/locale/, /pl|en-gb/),
-  ],
+      } ),
+      new webpack.ContextReplacementPlugin( /node_modules\/moment\/locale/, /pl|en-gb/ ),
+    ],
 
     devtool: "source-map"
   };
