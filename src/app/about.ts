@@ -1,3 +1,4 @@
+import '../stylesheets/about';
 import * as $ from 'jquery';
 
 import { newArr } from './support';

@@ -40,7 +40,7 @@ module.exports = function () {
         {
           test: /\.ts$/,
           loaders: [ 'awesome-typescript-loader' ],
-          include: path.resolve( __dirname, "src" )
+          include: path.resolve( __dirname, "src/app" )
         },
         {
           test: /\.css$/,
@@ -102,7 +102,7 @@ module.exports = function () {
         chunks: [ "common", "vendor", "manifest", "about" ],
         template: path.join( __dirname, "src/about.hbs" )
       } ),
-      new ExtractTextPlugin( { filename: "css/[name]-[hash].css", } ),
+      new ExtractTextPlugin( { filename: "css/[name]-[chunkhash].css", } ),
       new webpack.NamedModulesPlugin(),
       new webpack.optimize.CommonsChunkPlugin( {
         name: [ "common", "vendor", "manifest" ],

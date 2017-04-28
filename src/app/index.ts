@@ -1,4 +1,4 @@
-import '../stylesheets/style.less';
+import '../stylesheets/style';
 
 import * as $ from 'jquery';
 import * as moment from 'moment';

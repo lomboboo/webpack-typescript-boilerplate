@@ -9,7 +9,7 @@ let arr = [
   },
   {
     id: 2,
-    name: 'test2'
+    name: 'test21'
   }
 ];
 
