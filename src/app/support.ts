@@ -16,4 +16,8 @@ let arr = [
 
 let newArr = _.map(arr, "name");
 
-export { text, newArr, test };
+let testFunc = () => {
+  return "testFunc";
+};
+
+export { text, newArr, test, testFunc };

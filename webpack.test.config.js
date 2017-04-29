@@ -16,6 +16,12 @@ module.exports = function () {
     module: {
       rules: [
         {
+          test: /\.js$/,
+          enforce: "post",
+          exclude: /(node_modules)/,
+          loader: 'istanbul-instrumenter-loader'
+        },
+        {
           test: /\.ts$/,
           loaders: [ 'awesome-typescript-loader' ],
           include: path.resolve( __dirname, "src/app" )

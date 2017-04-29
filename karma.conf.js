@@ -14,7 +14,7 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'src/app/*.ts': ['webpack']
+      'src/app/*.ts': ['webpack', 'coverage']
     },
 
     webpack: {
@@ -22,7 +22,17 @@ module.exports = function(config) {
       resolve: webpackConfig.resolve
     },
 
-    reporters: ['progress'],
+    reporters: [ 'progress', 'coverage' ],
+
+    coverageReporter: {
+
+      dir: 'build/coverage/',
+      reporters: [
+        { type: 'html' },
+        { type: 'text' },
+        { type: 'text-summary' }
+      ]
+    },
 
     port: 9876,
 
