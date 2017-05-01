@@ -1,23 +1,21 @@
-import * as $ from "jquery";
-import * as _ from "lodash";
+import * as moment from "moment";
+moment.locale("pl");
 
-let text = $("p").text();
-let test = "test";
-let arr = [
-  {
-    id: 1,
-    name: "test"
-  },
-  {
-    id: 2,
-    name: "test2"
+class HelloClass {
+  private name: string;
+
+  constructor( name: string ) {
+    this.name = name;
   }
-];
 
-let newArr = _.map(arr, "name");
+  public greet(): string {
+    let time = moment().format("DD MMMM YYYY");
+    return `Hello, ${this.name} at ${time}!`;
+  }
 
-let testFunc = () => {
-  return "testFunc";
-};
+  public modifyGreet(): string {
+    return `Modified: Hello, ${this.name}!`;
+  }
+}
 
-export { text, newArr, test, testFunc };
+export { HelloClass };

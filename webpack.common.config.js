@@ -114,8 +114,7 @@ module.exports = function () {
       new ExtractTextPlugin( { filename: "css/[name]-[chunkhash].css", } ),
       new webpack.NamedModulesPlugin(),
       new webpack.optimize.CommonsChunkPlugin( {
-        name: [ "common", "vendor", "manifest" ],
-        chunksSortMode: "dependency"
+        name: [ "common", "vendor", "manifest" ]
       } ),
       new webpack.DefinePlugin( {
         "process.env": {

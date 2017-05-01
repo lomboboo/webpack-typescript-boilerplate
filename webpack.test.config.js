@@ -16,15 +16,17 @@ module.exports = function () {
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.ts$/,
           enforce: "post",
-          exclude: /(node_modules)/,
+          exclude: [
+            path.resolve( __dirname, "node_modules" )
+          ],
           loader: 'istanbul-instrumenter-loader'
         },
         {
           test: /\.ts$/,
           loaders: [ 'awesome-typescript-loader' ],
-          include: path.resolve( __dirname, "src/app" )
+          exclude: path.resolve( __dirname, "node_modules" ),
         },
         {
           test: /\.ts$/,

@@ -7,14 +7,15 @@ module.exports = function(config) {
     frameworks: ['mocha', 'chai'],
 
     files: [
-      'src/app/*.test.ts'
+      './src/app/*.test.ts'
     ],
 
     exclude: [
+      'node_modules'
     ],
 
     preprocessors: {
-      'src/app/*.ts': ['webpack', 'coverage']
+      './src/app/*.ts': ['webpack', 'coverage']
     },
 
     webpack: {
@@ -26,10 +27,8 @@ module.exports = function(config) {
 
     coverageReporter: {
 
-      dir: 'build/coverage/',
+      dir: 'coverage/',
       reporters: [
-        { type: 'html' },
-        { type: 'text' },
         { type: 'text-summary' }
       ]
     },
