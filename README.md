@@ -20,7 +20,7 @@ To start using this seed to need to clone or download it first.
 ## Get project
 ```bash
 # clone to your own project directory
-git@github.com:lomboboo/webpack2-typescript-seed.git project-name
+git clone git@github.com:lomboboo/webpack2-typescript-seed.git project-name
 
 # remove .git directory and initialize git on your own
 cd project-name
