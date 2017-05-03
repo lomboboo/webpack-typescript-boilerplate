@@ -13,7 +13,7 @@ Javascript custom starter kit that includes:
   * [Usage](#usage)
 * [File structure](#file-structure)
 * [Configuration](#configuration)
-* [@types and NODE_ENV variables](#@types-and-node-env-variables)
+* [@types and NODE_ENV variables](#@types-and-node_env-variables)
 
 ## Start 
 To start using this seed to need to clone or download it first.
