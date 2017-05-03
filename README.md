@@ -81,11 +81,11 @@ webpack2-typescript-seed/
 ```
 
 ## Configuration
-Configuration files live in config/ . Current version can configure webpack and karma settings for different environments/
+Configuration files live in config/ . Current version can configure webpack and karma settings for different environments.
 
 ## @types and NODE_ENV variables
 
-When including 3-rd party modules or libraries you should also install their type definitions with @types like so:
+When including 3-rd party modules or libraries you should also install their type definitions with [@types](https://www.npmjs.com/~types) like so:
 
 ```bash
 npm install @types/lodash
@@ -95,15 +95,15 @@ npm install @types/moment
 
 Another helpful thing is that you can access global Node variable when developing, building for production or testing app. 
 
-During development (**npm start**) you can access 
+During **development** (npm start) you can access 
 ```
 const ENV = process.env.NODE_ENV
 
 ``` 
 
-```ENV``` will be equal to ```dev```.
+```ENV``` will be equal to ```'dev'```.
 
-When you build application for production ```process.env.NODE_ENV``` will be equal to ```prod```.
+When you build application for **production** ```process.env.NODE_ENV``` will be equal to ```'prod'```.
 
-For tests ```process.env.NODE_ENV``` will have value of ```test```.
+For **tests** ```process.env.NODE_ENV``` will have value of ```'test'```.
 
