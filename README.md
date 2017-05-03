@@ -13,7 +13,7 @@ Javascript custom starter kit that includes:
   * [Usage](#usage)
 * [File structure](#file-structure)
 * [Configuration](#configuration)
-* [@types and NODE_ENV variables](#extra)
+* [@types and NODE_ENV variables](#@types-and-node-env-variables)
 
 ## Start 
 To start using this seed to need to clone or download it first.
@@ -96,7 +96,7 @@ npm install @types/moment
 Another helpful thing is that you can access global Node variable when developing, building for production or testing app. 
 
 During **development** (npm start) you can access 
-```
+```javascript
 const ENV = process.env.NODE_ENV
 
 ``` 
