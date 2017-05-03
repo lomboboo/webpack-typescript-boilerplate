@@ -1,4 +1,4 @@
-<a align="center">
+<a align="center" href="https://webpack.js.org/">
   <img width="440" src="https://cdn-images-1.medium.com/max/1920/1*gdoQ1_5OID90wf1eLTFvWw.png" />
 </a>
 
@@ -6,7 +6,7 @@
 Javascript custom starter kit that includes:
 > [Webpack 2](https://webpack.js.org/), [TypeScript 2](http://www.typescriptlang.org/), [Istanbul](https://github.com/gotwarlost/istanbul), [Mocha](https://mochajs.org/), [Karma](https://karma-runner.github.io/), [@types](https://www.npmjs.com/~types), [TsLint](http://palantir.github.io/tslint/), [Handlebars](http://handlebarsjs.com/).
 
-## Table of contents:
+# Table of contents:
 * [Start](#start)
   * [Get project](#get-project)
   * [Installing](#installing)
@@ -15,19 +15,19 @@ Javascript custom starter kit that includes:
 * [Configuration](#configuration)
 * [@types and NODE_ENV variables](#extra)
 
-###Start 
+##Start 
 To start using this seed to need to clone or download it first.
-####Get project
+##Get project
 ```bash
 # clone to your own project directory
 git@github.com:lomboboo/webpack2-typescript-seed.git folder-name
 ```
-####Installing
+##Installing
 ```bash
 # then inside project directory install dependencies with npm
 npm install
 ```
-####Usage
+##Usage
 ```bash
 # to start develop run :
 npm start
