@@ -49,6 +49,7 @@ Schema of the project file structure:
 ```
 webpack2-typescript-seed/
  ├──config/                        * configuration
+ │   ├──helper.js                  * helper functions: ex., root() for getting root of the project
  │   ├──karma.conf.js              * karma config for unit tests
  │   ├──webpack.dev.js             * webpack development config
  │   ├──webpack.prod.js            * webpack production config
