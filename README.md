@@ -35,9 +35,13 @@ npm install
 ```bash
 # to start develop run :
 npm start
+# you can access app from http://localhost:8000
 
 # to make build from the project run:
 npm run build
+
+# to run tests use:
+npm run test
 ```
 
 ## File structure
@@ -51,7 +55,7 @@ webpack2-typescript-seed/
  │   └──webpack.test.js            * webpack testing config
  │
  ├──src/                           * our source files that will be compiled to javascript
- │   ├──app/                       * application directory
+ │   ├──app/                       * application directory, for applicaton files and test files
  │   │
  │   ├──partials/                  * partial files: ex., header.hbs, footer.hbs
  │   │
@@ -75,4 +79,31 @@ webpack2-typescript-seed/
  └──webpack.common.config.js       * webpack common configuration file, used by different environments
 
 ```
+
+## Configuration
+Configuration files live in config/ . Current version can configure webpack and karma settings for different environments/
+
+## @types and NODE_ENV variables
+
+When including 3-rd party modules or libraries you should also install their type definitions with @types like so:
+
+```bash
+npm install @types/lodash
+npm install @types/jquery
+npm install @types/moment
+```
+
+Another helpful thing is that you can access global Node variable when developing, building for production or testing app. 
+
+During development (**npm start**) you can access 
+```
+const ENV = process.env.NODE_ENV
+
+``` 
+
+```ENV``` will be equal to ```dev```.
+
+When you build application for production ```process.env.NODE_ENV``` will be equal to ```prod```.
+
+For tests ```process.env.NODE_ENV``` will have value of ```test```.
 
