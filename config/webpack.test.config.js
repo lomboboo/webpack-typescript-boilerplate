@@ -1,5 +1,6 @@
 const path = require( "path" );
 
+const help = require("./helper");
 const ENV = process.env.NODE_ENV;
 const ENV_msg = ENV === 'prod' ? 'PRODUCTION' : ( ENV === 'dev' ? 'DEVELOPMENT' : 'TEST');
 console.log( `--------------------------------------------------------------------------------------------------------------------` );
@@ -19,22 +20,22 @@ module.exports = function () {
           test: /\.ts$/,
           enforce: "post",
           exclude: [
-            path.resolve( __dirname, "node_modules" )
+            help.root( "node_modules" )
           ],
           loader: 'istanbul-instrumenter-loader'
         },
         {
           test: /\.ts$/,
           loaders: [ 'awesome-typescript-loader' ],
-          exclude: path.resolve( __dirname, "node_modules" ),
+          exclude: help.root( "node_modules" ),
         },
         {
           test: /\.ts$/,
           enforce: 'pre',
           loader: 'tslint-loader',
           options: {
-            configFile: 'tslint.json',
-            tsConfigFile: 'tsconfig.json'
+            configFile: help.root('tslint.json'),
+            tsConfigFile: help.root('tsconfig.json')
           }
         }
       ]

@@ -4,14 +4,14 @@
   "description": "JavaScript development environment by @lomboboo",
   "scripts": {
     "start": "NODE_ENV='dev' npm-run-all --parallel clean-build security-check webpack-dev-server test",
-    "webpack-dev-server": "webpack-dev-server --config=./webpack.dev.config.js --inline",
+    "webpack-dev-server": "webpack-dev-server --config=./config/webpack.dev.config.js --inline",
     "security-check": "nsp check",
     "share": "lt --port 80 --subdomain lomboboo",
     "test": "NODE_ENV='test' karma start karma.conf.js",
-    "test:watch": "NODE_ENV='test' karma start",
+    "test:single": "NODE_ENV='test' karma start karma.conf.js --single-run",
     "clean-build": "rimraf ./build",
-    "prebuild": "npm-run-all clean-build security-check test",
-    "build": "NODE_ENV='prod' webpack --progress --config=./webpack.prod.config.js"
+    "prebuild": "npm-run-all clean-build security-check test:single",
+    "build": "NODE_ENV='prod' webpack --progress --config=./config/webpack.prod.config.js"
   },
   "author": "Roman Prokopchuk",
   "license": "MIT",

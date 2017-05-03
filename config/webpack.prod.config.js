@@ -4,7 +4,8 @@ const webpack = require( 'webpack' );
 const path = require( 'path' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 
-const webpackCommon = require( './webpack.common.config' );
+const help = require("./helper");
+const webpackCommon = require( '../webpack.common.config' );
 
 
 module.exports = function () {
@@ -19,8 +20,8 @@ module.exports = function () {
           options: {
             emitErrors: true,
             failOnHint: true,
-            configFile: 'tslint.json',
-            tsConfigFile: 'tsconfig.json'
+            configFile: help.root('tslint.json'),
+            tsConfigFile: help.root('tsconfig.json')
           }
         }
       ]
@@ -56,8 +57,8 @@ module.exports = function () {
       // Copy public from the public folder
       // Reference: https://github.com/kevlened/copy-webpack-plugin
       new CopyWebpackPlugin( [ {
-        from: path.join( __dirname, 'src/public' ),
-        to: path.join( __dirname, 'build/public' )
+        from: help.root( 'src/public' ),
+        to: help.root( 'build/public' )
       } ] ),
     ],
 

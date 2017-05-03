@@ -1,7 +1,7 @@
-const path = require( "path" );
 const webpackMerge = require('webpack-merge');
 
-const webpackCommon = require('./webpack.common.config');
+const help = require("./helper");
+const webpackCommon = require('../webpack.common.config');
 
 module.exports = function () {
   return webpackMerge(webpackCommon(), {
@@ -9,7 +9,7 @@ module.exports = function () {
     devServer: {
       port: 8000,
       //stats: 'minimal',
-      contentBase: path.join(__dirname, 'src'),
+      contentBase: help.root('src'),
       compress: true
     },
 
