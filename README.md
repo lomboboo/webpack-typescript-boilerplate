@@ -109,3 +109,7 @@ When you build application for **production** ```process.env.NODE_ENV``` will be
 
 For **tests** ```process.env.NODE_ENV``` will have value of ```'test'```.
 
+## TODO:
+* tslint - add advanced rules, look [reference](https://github.com/airbnb/javascript)
+* tests - configuration for E2E tests
+* example app - rewrite example app to solid, simple app with couple entries
