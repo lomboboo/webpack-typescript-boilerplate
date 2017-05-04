@@ -114,3 +114,4 @@ For **tests** ```process.env.NODE_ENV``` will have value of ```'test'```.
 * tests - configuration for E2E tests
 * example app - rewrite example app to solid, simple app with couple entries
 * install and configure Observable
+* add Bootstrap 4
