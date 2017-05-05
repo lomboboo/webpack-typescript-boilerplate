@@ -17,7 +17,7 @@ module.exports = function () {
     entry: {
       index: [ "./index.ts" ],
       about: [ "./about.ts" ],
-      vendor: [ "moment", "jquery", "lodash" ]
+      vendor: [ "moment", "jquery", "lodash", "rxjs" ]
     },
 
     output: {
