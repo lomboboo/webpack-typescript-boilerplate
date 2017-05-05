@@ -84,7 +84,13 @@ webpack2-typescript-seed/
 
 ## Configuration
 Configuration files live in config/ . Current version can configure webpack and karma settings for different environments.
-Webpack in configured to include 3-rd party libraries into separate **vendor.js** file. To do that just add 3-rd party libraries to ``entry.vendor`` in ``webpack.common.config.js`` file.
+Webpack in configured to include 3-rd party libraries into separate **vendor.js** file. To do that just add 3-rd party libraries to 
+```entry: {
+      ...
+      vendor: [ ..., "your-library" ]
+    },
+    ```
+in ``webpack.common.config.js`` file.
 
 ## @types and NODE_ENV variables
 
