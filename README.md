@@ -13,6 +13,8 @@ Javascript custom starter kit that includes:
   * [Usage](#usage)
 * [File structure](#file-structure)
 * [Configuration](#configuration)
+  * [Bootstrap 4](#bootstrap-4)
+  * [New pages](#new-pages)
 * [@types and NODE_ENV variables](#types-and-node_env-variables)
 
 ## Start 
@@ -104,7 +106,7 @@ plugins: [
   new HtmlWebpackPlugin( {
     filename: 'new-page.html',
     chunks: [ "common", "vendor", "bootstrap", "manifest", "about" ],
-    template: path.join( __dirname, "src/new-page.hbs" )
+    template: help.root( "src/new-page.hbs" )
   } ),
 ...
 ]
