@@ -2,7 +2,7 @@ import "../stylesheets/style";
 import "../stylesheets/about";
 import * as $ from "jquery";
 import { PostsService } from "./services/Posts";
-import { ActiveMenu } from "./menu";
+import { ActiveMenu } from "./shared";
 const currentPage = "about";
 
 $( "title" ).prepend( "About: " );

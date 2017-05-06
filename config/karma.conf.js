@@ -7,7 +7,7 @@ module.exports = function(config) {
     frameworks: ['mocha', 'chai'],
 
     files: [
-      './src/app/*.test.ts'
+      './src/app/**/*.test.ts'
     ],
 
     exclude: [
@@ -15,7 +15,7 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      './src/app/*.ts': ['webpack', 'coverage']
+      './src/app/**/*.ts': ['webpack', 'coverage']
     },
 
     webpack: {

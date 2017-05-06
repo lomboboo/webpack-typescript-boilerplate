@@ -1,7 +1,7 @@
 import * as moment from "moment";
 moment.locale("pl");
 
-class HelloClass {
+export class HelloClass {
   private name: string;
 
   constructor( name: string ) {
@@ -17,5 +17,3 @@ class HelloClass {
     return `Modified: Hello, ${this.name}!`;
   }
 }
-
-export { HelloClass };

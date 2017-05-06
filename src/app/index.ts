@@ -2,7 +2,7 @@ import "../stylesheets/style";
 import "../stylesheets/index";
 import * as $ from "jquery";
 import * as _ from "lodash";
-import { ActiveMenu } from "./menu";
+import { ActiveMenu } from "./shared";
 const currentPage = "index";
 
 $( "title" ).prepend( "Strona główna: " );
