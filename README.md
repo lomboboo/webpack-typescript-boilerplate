@@ -84,6 +84,17 @@ webpack2-typescript-seed/
 
 ## Configuration
 Configuration files live in config/ . Current version can configure webpack and karma settings for different environments.
+Webpack in configured to include 3-rd party libraries into separate **vendor.js** file. To do that just add 3-rd party libraries to 
+```javascript
+entry: {
+      ...
+      vendor: [ ..., "your-library" ]
+    },
+```
+in ``webpack.common.config.js`` file.
+
+### Bootstrap 4
+Project uses Bootstrap 4 and [bootstrap-loader](https://github.com/shakacode/bootstrap-loader), which is flexible to configure by editing ``.bootstraprc`` file in the root directory. You can also redefine basic variables in the ``config/bootstrap-pre-customizations.scss`` file. For fulll reference read the [docs](https://github.com/shakacode/bootstrap-loader).
 
 ## @types and NODE_ENV variables
 
@@ -113,5 +124,5 @@ For **tests** ```process.env.NODE_ENV``` will have value of ```'test'```.
 * tslint - add advanced rules, look [reference](https://github.com/airbnb/javascript)
 * tests - configuration for E2E tests
 * example app - rewrite example app to solid, simple app with couple entries
-* install and configure Observable
-* add Bootstrap 4
+* ~~install and configure Observable~~
+* ~~add Bootstrap 4~~
