@@ -94,7 +94,9 @@ entry: {
 in ``webpack.common.config.js`` file.
 
 ### Bootstrap 4
-Project uses Bootstrap 4 and [bootstrap-loader](https://github.com/shakacode/bootstrap-loader), which is flexible to configure by editing ``.bootstraprc`` file in the root directory. You can also redefine basic variables in the ``config/bootstrap-pre-customizations.scss`` file. For fulll reference read the [docs](https://github.com/shakacode/bootstrap-loader).
+Project uses Bootstrap 4 and [bootstrap-loader](https://github.com/shakacode/bootstrap-loader), which is flexible to configure by editing ``.bootstraprc`` file in the root directory. For simplicity most of the Bootstrap 4 featues were disabled in the ``.bootstraprc`` file. Fell free to configure it as you wish.
+
+You can also redefine basic variables in the ``config/bootstrap-pre-customizations.scss`` file. For fulll reference read the [docs](https://github.com/shakacode/bootstrap-loader).
 
 ## @types and NODE_ENV variables
 
