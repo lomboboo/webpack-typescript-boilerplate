@@ -3,6 +3,7 @@ const webpack = require( 'webpack' );
 const autoprefixer = require( 'autoprefixer' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
+const help = require("./config/helper");
 
 const ENV = process.env.NODE_ENV;
 const ENV_msg = ENV === 'prod' ? 'PRODUCTION' : ( ENV === 'dev' ? 'DEVELOPMENT' : 'TEST');
@@ -12,7 +13,7 @@ console.log( `------------------------------------------------------------------
 
 module.exports = function () {
   return {
-    context: path.resolve( __dirname, "src/app" ),
+    context: help.root( "src/app" ),
 
     entry: {
       index: [ "./index.ts" ],
@@ -22,7 +23,7 @@ module.exports = function () {
     },
 
     output: {
-      path: path.resolve( __dirname, "build" ),
+      path: help.root( "build" ),
       publicPath: '/',
       filename: "js/[name].[chunkhash].js"
     },
@@ -41,7 +42,7 @@ module.exports = function () {
         {
           test: /\.ts$/,
           loaders: [ 'awesome-typescript-loader' ],
-          include: path.resolve( __dirname, "src/app" )
+          include: help.root( "src/app" )
         },
         {
           test: /\.ts$/,
@@ -55,7 +56,7 @@ module.exports = function () {
         {
           test: /\.css$/,
           exclude: [
-            path.resolve( __dirname, "src/public/font/font-awesome" ),
+            help.root( "src/public/font/font-awesome" ),
           ],
           use: [
             {
@@ -70,7 +71,7 @@ module.exports = function () {
         {
           test: /\.less$/,
           exclude: [
-            path.resolve( __dirname, "src/public/font/font-awesome" ),
+            help.root( "src/public/font/font-awesome" ),
           ],
           use: ExtractTextPlugin.extract( {
             fallbackLoader: 'style-loader',
@@ -105,7 +106,7 @@ module.exports = function () {
       new HtmlWebpackPlugin( {
         filename: 'index.html',
         chunks: [ "common", "vendor", "bootstrap", "manifest", "index" ],
-        template: path.join( __dirname, "src/index.hbs" )
+        template: help.root( "src/index.hbs" )
       } ),
       new HtmlWebpackPlugin( {
         filename: 'about.html',
