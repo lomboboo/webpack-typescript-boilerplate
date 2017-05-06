@@ -17,7 +17,8 @@ module.exports = function () {
     entry: {
       index: [ "./index.ts" ],
       about: [ "./about.ts" ],
-      vendor: [ 'bootstrap-loader', "moment", "jquery", "lodash", "rxjs" ]
+      vendor: [ "moment", "jquery", "lodash", "rxjs" ],
+      bootstrap: [ 'bootstrap-loader' ]
     },
 
     output: {
@@ -103,18 +104,18 @@ module.exports = function () {
     plugins: [
       new HtmlWebpackPlugin( {
         filename: 'index.html',
-        chunks: [ "common", "vendor", "manifest", "index" ],
+        chunks: [ "common", "vendor", "bootstrap", "manifest", "index" ],
         template: path.join( __dirname, "src/index.hbs" )
       } ),
       new HtmlWebpackPlugin( {
         filename: 'about.html',
-        chunks: [ "common", "vendor", "manifest", "about" ],
+        chunks: [ "common", "vendor", "bootstrap", "manifest", "about" ],
         template: path.join( __dirname, "src/about.hbs" )
       } ),
       new ExtractTextPlugin( { filename: "css/[name]-[chunkhash].css", } ),
       new webpack.NamedModulesPlugin(),
       new webpack.optimize.CommonsChunkPlugin( {
-        name: [ "common", "vendor", "manifest" ]
+        name: [ "common", "vendor", "bootstrap", "manifest" ]
       } ),
       new webpack.DefinePlugin( {
         "process.env": {

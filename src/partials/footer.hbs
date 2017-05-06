@@ -1,4 +1,28 @@
 <p style="text-align: center;">&copy; @lomboboo</p>
 <span id="time"></span>
+
+<div id="page-loader">
+
+</div>
+
+<script>
+  const pageLoader = document.querySelector("#page-loader");
+  window.onload = function () {
+    fadeOut(pageLoader);
+  };
+  function fadeOut(el){
+    el.style.opacity = 1;
+
+    (function fade() {
+      if ((el.style.opacity -= .1) < 0) {
+        el.style.display = "none";
+      } else {
+        requestAnimationFrame(fade);
+      }
+    })();
+  }
+  console.log( pageLoader );
+</script>
+
 </body>
 </html>

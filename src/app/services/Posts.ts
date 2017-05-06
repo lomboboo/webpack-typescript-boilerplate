@@ -16,6 +16,6 @@ export class PostsService {
     return Observable
       .fromPromise( promise )
       .map( ( response: any ) => response );
-  };
+  }
 
 }
