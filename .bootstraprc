@@ -73,7 +73,7 @@ styles:
   badge: false
   breadcrumb: false
   button-group: true
-  card: false
+  card: true
   close: true
   custom-forms: true
   dropdown: false

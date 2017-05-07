@@ -111,7 +111,7 @@ module.exports = function () {
       new HtmlWebpackPlugin( {
         filename: 'about.html',
         chunks: [ "common", "vendor", "bootstrap", "manifest", "about" ],
-        template: path.join( __dirname, "src/about.hbs" )
+        template: help.root( "src/about.hbs" )
       } ),
       new ExtractTextPlugin( { filename: "css/[name]-[chunkhash].css", } ),
       new webpack.NamedModulesPlugin(),

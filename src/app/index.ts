@@ -1,13 +1,13 @@
 import "../stylesheets/style";
 import "../stylesheets/index";
-import * as $ from "jquery";
 import * as _ from "lodash";
 import { ActiveMenu } from "./shared";
+import { TitleService } from "./services";
 const currentPage = "index";
 
-$( "title" ).prepend( "Strona główna: " );
 const activeMenu = new ActiveMenu();
 activeMenu.activeClass = currentPage;
+TitleService.title = "Home";
 
 const ENV = process.env.NODE_ENV;
 
