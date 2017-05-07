@@ -13,6 +13,8 @@ Javascript custom starter kit that includes:
   * [Usage](#usage)
 * [File structure](#file-structure)
 * [Configuration](#configuration)
+  * [Bootstrap 4](#bootstrap-4)
+  * [New pages](#new-pages)
 * [@types and NODE_ENV variables](#types-and-node_env-variables)
 
 ## Start 
@@ -95,6 +97,20 @@ in ``webpack.common.config.js`` file.
 
 ### Bootstrap 4
 Project uses Bootstrap 4 and [bootstrap-loader](https://github.com/shakacode/bootstrap-loader), which is flexible to configure by editing ``.bootstraprc`` file in the root directory. For simplicity **most of the Bootstrap 4 featues were disabled** in the ``.bootstraprc`` file. Fell free to configure it as you wish.
+
+### New pages
+To add new page just add another in the ``webpack.common.config.js`` file under the ``plugins`` like so:
+```javascript
+plugins: [
+...
+  new HtmlWebpackPlugin( {
+    filename: 'new-page.html',
+    chunks: [ "common", "vendor", "bootstrap", "manifest", "about" ],
+    template: help.root( "src/new-page.hbs" )
+  } ),
+...
+]
+```
 
 You can also redefine basic variables in the ``config/bootstrap-pre-customizations.scss`` file. For fulll reference read the [docs](https://github.com/shakacode/bootstrap-loader).
 
