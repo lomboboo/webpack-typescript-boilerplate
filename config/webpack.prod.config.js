@@ -11,6 +11,10 @@ const webpackCommon = require( '../webpack.common.config' );
 module.exports = function () {
   return webpackMerge( webpackCommon(), {
 
+    output: {
+      publicPath: "/js-boilerplate/build"
+    },
+
     module: {
       rules: [
         {

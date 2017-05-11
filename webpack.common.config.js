@@ -69,6 +69,10 @@ module.exports = function () {
           ]
         },
         {
+          test: /\.(jp?g|png|gif|svg)$/,
+          loaders: ["url-loader"]
+        },
+        {
           test: /\.less$/,
           exclude: [
             help.root( "src/public/font/font-awesome" ),
