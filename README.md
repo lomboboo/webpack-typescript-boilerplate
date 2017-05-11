@@ -144,4 +144,4 @@ For **tests** ```process.env.NODE_ENV``` will have value of ```'test'```.
 * example app - rewrite example app to solid, simple app with couple entries
 * ~~install and configure Observable~~
 * ~~add Bootstrap 4~~
-* webpack config file loader for images
+* ~~webpack config file loader for images~~
