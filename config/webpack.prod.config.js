@@ -3,6 +3,7 @@ const OptimizeCssAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
 const webpack = require( 'webpack' );
 const path = require( 'path' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
+const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 
 const help = require( "./helper" );
 const webpackCommon = require( '../webpack.common.config' );
@@ -12,7 +13,8 @@ module.exports = function () {
   return webpackMerge( webpackCommon(), {
 
     output: {
-      publicPath: "/js-boilerplate/build"
+      publicPath: "/js-boilerplate/build",
+      filename: "js/[name].[chunkhash].js"
     },
 
     module: {
@@ -39,6 +41,7 @@ module.exports = function () {
           discardComments: { removeAll: true }
         }
       } ),
+      new ExtractTextPlugin( { filename: "css/[name]-[chunkhash].css", } ),
       new webpack.LoaderOptionsPlugin( {
         minimize: true,
         debug: false

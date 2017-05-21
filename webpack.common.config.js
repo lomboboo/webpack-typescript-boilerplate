@@ -24,12 +24,11 @@ module.exports = function () {
 
     output: {
       path: help.root( "build" ),
-      publicPath: '/',
-      filename: "js/[name].[chunkhash].js"
+      publicPath: '/'
     },
 
     resolve: {
-      extensions: [ '.ts', '.js', '.json', '.css', '.less', '.html', '.hbs' ]
+      extensions: [ '.ts', '.js', '.json', '.css', '.less', '.html', '.hbs', '.scss' ]
     },
 
     module: {
@@ -102,6 +101,37 @@ module.exports = function () {
               },
             ]
           } )
+        },
+        {
+          test: /\.scss$/,
+          include: [
+            help.root( "src/stylesheets" ),
+          ],
+          use: ExtractTextPlugin.extract( {
+            fallbackLoader: 'style-loader',
+            use: [
+              {
+                loader: 'css-loader',
+                options: { sourceMap: true, importLoaders: 1 }
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: true,
+                  map: true,
+                  plugins: function () {
+                    return [
+                      require( 'autoprefixer' )
+                    ];
+                  }
+                }
+              },
+              {
+                loader: 'sass-loader',
+                options: { sourceMap: true }
+              },
+            ]
+          } )
         }
       ]
     },
@@ -117,7 +147,6 @@ module.exports = function () {
         chunks: [ "common", "vendor", "bootstrap", "manifest", "about" ],
         template: help.root( "src/about.hbs" )
       } ),
-      new ExtractTextPlugin( { filename: "css/[name]-[chunkhash].css", } ),
       new webpack.NamedModulesPlugin(),
       new webpack.optimize.CommonsChunkPlugin( {
         name: [ "common", "vendor", "bootstrap", "manifest" ]
