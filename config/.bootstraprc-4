@@ -1,14 +1,10 @@
 ---
-# Output debugging info
 # loglevel: debug
 
-# Major version of Bootstrap: 3 or 4
 bootstrapVersion: 4
 
-# If Bootstrap version 4 is used - turn on/off flexbox model
 useFlexbox: true
 
-# Webpack loaders, order matters
 styleLoaders:
   - style
   - css
@@ -32,7 +28,7 @@ extractStyles: true
 # Thus, derived Bootstrap variables can depend on values from here.
 # See the Bootstrap _variables.scss file for examples of derived Bootstrap variables.
 #
-preBootstrapCustomizations: ./config/bootstrap-pre-customizations.scss
+preBootstrapCustomizations: ./bootstrap-pre-customizations.scss
 
 
 # This gets loaded after bootstrap/variables is loaded
@@ -79,7 +75,7 @@ styles:
   dropdown: false
   input-group: true
   jumbotron: false
-  list-group: true
+  list-group: false
   media: true
   nav: true
   navbar: true

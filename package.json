@@ -33,6 +33,7 @@
     "@types/rx": "^4.1.1",
     "awesome-typescript-loader": "^3.0.8",
     "bootstrap-loader": "^2.1.0",
+    "bootstrap-sass": "^3.3.7",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "chunk-manifest-webpack-plugin": "^1.0.0",

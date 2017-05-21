@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const help = require("./config/helper");
 
 const ENV = process.env.NODE_ENV;
+const bootstraprcCustomLocation = "config/.bootstraprc-4";
 const ENV_msg = ENV === 'prod' ? 'PRODUCTION' : ( ENV === 'dev' ? 'DEVELOPMENT' : 'TEST');
 console.log( `--------------------------------------------------------------------------------------------------------------------` );
 console.log( `----------------------------------------------------- ${ENV_msg} ---------------------------------------------------` );
@@ -19,7 +20,7 @@ module.exports = function () {
       index: [ "./index.ts" ],
       about: [ "./about.ts" ],
       vendor: [ "moment", "jquery", "lodash", "rxjs" ],
-      bootstrap: [ 'bootstrap-loader' ]
+      bootstrap: [ `bootstrap-loader/lib/bootstrap.loader?extractStyles&configFilePath=${__dirname}/${bootstraprcCustomLocation}!bootstrap-loader/no-op.js` ]
     },
 
     output: {
@@ -34,6 +35,8 @@ module.exports = function () {
     module: {
       noParse: /\/node_modules\/(jquery|lodash|moment)/,
       rules: [
+        { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=100000000000" },
+        { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000000000" },
         {
           test: /\.ts$/,
           loaders: [ 'awesome-typescript-loader' ],
