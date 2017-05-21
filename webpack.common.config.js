@@ -35,10 +35,6 @@ module.exports = function () {
       noParse: /\/node_modules\/(jquery|lodash|moment)/,
       rules: [
         {
-          test: /\.hbs$/,
-          loaders: [ 'handlebars-loader' ]
-        },
-        {
           test: /\.ts$/,
           loaders: [ 'awesome-typescript-loader' ],
           include: help.root( "src/app" )
@@ -140,12 +136,12 @@ module.exports = function () {
       new HtmlWebpackPlugin( {
         filename: 'index.html',
         chunks: [ "common", "vendor", "bootstrap", "manifest", "index" ],
-        template: help.root( "src/index.hbs" )
+        template: help.root( "src/index.html" )
       } ),
       new HtmlWebpackPlugin( {
         filename: 'about.html',
         chunks: [ "common", "vendor", "bootstrap", "manifest", "about" ],
-        template: help.root( "src/about.hbs" )
+        template: help.root( "src/about.html" )
       } ),
       new webpack.NamedModulesPlugin(),
       new webpack.optimize.CommonsChunkPlugin( {
