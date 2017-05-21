@@ -1,6 +1,5 @@
-import "../stylesheets/style";
+import "../stylesheets/common";
 import "../stylesheets/index";
-import "../stylesheets/test";
 import * as _ from "lodash";
 import { ActiveMenu } from "./shared";
 import { TitleService } from "./services";
