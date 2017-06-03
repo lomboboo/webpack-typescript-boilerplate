@@ -3,6 +3,7 @@ const webpack = require( 'webpack' );
 const autoprefixer = require( 'autoprefixer' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const help = require("./config/helper");
 
 const ENV = process.env.NODE_ENV;
@@ -173,6 +174,27 @@ module.exports = function () {
         Tab: "exports-loader?Tab!bootstrap/js/dist/tab",
         Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
         Util: "exports-loader?Util!bootstrap/js/dist/util",
+      }),
+      new FaviconsWebpackPlugin({
+        // Your source logo
+        logo: help.root( 'src/public/meta/favicon.png' ),
+        prefix: 'icons-[hash]/',
+        emitStats: false,
+        statsFilename: 'iconstats-[hash].json',
+        persistentCache: true,
+        inject: true,
+        icons: {
+          android: true,
+          appleIcon: true,
+          appleStartup: true,
+          coast: false,
+          favicons: true,
+          firefox: true,
+          opengraph: false,
+          twitter: false,
+          yandex: false,
+          windows: false
+        }
       })
     ],
 
