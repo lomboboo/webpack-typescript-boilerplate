@@ -42,10 +42,10 @@ module.exports = function () {
         }
       } ),
       new ExtractTextPlugin( { filename: "css/[name]-[chunkhash].css", } ),
-      new webpack.LoaderOptionsPlugin( {
+/*      new webpack.LoaderOptionsPlugin( {
         minimize: true,
         debug: false
-      } ),
+      } ),*/
       // Minify JS
       new webpack.optimize.UglifyJsPlugin( {
         compress: {
