@@ -1,4 +1,4 @@
-//import "../stylesheets/common";
+import "../stylesheets/common";
 import "../stylesheets/about";
 import * as $ from "jquery";
 import { BeersService, TitleService } from "./services";

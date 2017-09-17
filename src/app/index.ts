@@ -1,4 +1,4 @@
-//import "../stylesheets/common";
+import "../stylesheets/common";
 import "../stylesheets/index";
 import * as _ from "lodash";
 import { ActiveMenu } from "./shared";
