@@ -1,0 +1,13 @@
+h1 {
+  color: purple;
+}
+
+.card {
+  img {
+    width: 100px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+}

@@ -9,6 +9,10 @@ const help = require("./config/helper");
 const ENV = process.env.NODE_ENV;
 const bootstraprcCustomLocation = "config/.bootstraprc-4";
 const ENV_msg = ENV === 'prod' ? 'PRODUCTION' : ( ENV === 'dev' ? 'DEVELOPMENT' : 'TEST');
+
+const pingue_cli_config = require(help.root('pingue_cli.json'));
+const preprocessor = pingue_cli_config.preprocessor;
+
 console.log( `--------------------------------------------------------------------------------------------------------------------` );
 console.log( `----------------------------------------------------- ${ENV_msg} ---------------------------------------------------` );
 console.log( `--------------------------------------------------------------------------------------------------------------------` );
@@ -71,7 +75,7 @@ module.exports = function () {
           test: /\.(jp?g|png|gif|svg)$/,
           loaders: ["url-loader"]
         },
-        {
+/*        {
           test: /\.less$/,
           exclude: [
             help.root( "src/public/font/font-awesome" ),
@@ -101,11 +105,14 @@ module.exports = function () {
               },
             ]
           } )
-        },
+        },*/
         {
-          test: /\.scss$/,
+          test: !preprocessor ? "scss" : ( preprocessor==="scss" ? /\.scss$/ : /\.less$/ ),
           include: [
             help.root( "src/stylesheets" ),
+          ],
+          exclude: [
+            help.root( "src/public/font/font-awesome" ),
           ],
           use: ExtractTextPlugin.extract( {
             fallbackLoader: 'style-loader',
@@ -127,7 +134,7 @@ module.exports = function () {
                 }
               },
               {
-                loader: 'sass-loader',
+                loader: !preprocessor ? "sass-loader" : ( preprocessor==="scss" ? 'sass-loader' : 'less-loader' ),
                 options: { sourceMap: true }
               },
             ]
