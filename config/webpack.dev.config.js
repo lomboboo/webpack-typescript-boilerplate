@@ -1,30 +1,37 @@
-const webpackMerge = require('webpack-merge');
+const webpackMerge = require( 'webpack-merge' );
+const fs = require( 'fs' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 
-const help = require("./helper");
-const webpackCommon = require('../webpack.common.config');
+const help = require( './helper' );
+const webpackCommon = require( '../webpack.common.config' );
 
-const pingue_cli_config = require(help.root('pingue_cli.json'));
+let port = null;
+try {
+  let pingue_cli_config = JSON.parse(fs.readFileSync( help.root( 'pingue_cli.json' ), 'utf8' ));
+  port = pingue_cli_config.port;
+} catch ( e ) {
+  console.log( "No pingue_cli.json" );
+}
 
 module.exports = function () {
-  return webpackMerge(webpackCommon(), {
+  return webpackMerge( webpackCommon(), {
 
     devServer: {
-      port: pingue_cli_config.port || 8000,
+      port: port || 8000,
       //stats: 'minimal',
-      contentBase: help.root('src'),
+      contentBase: help.root( 'src' ),
       compress: true
     },
 
     output: {
-      filename: "js/[name].js"
+      filename: 'js/[name].js'
     },
 
     plugins: [
-      new ExtractTextPlugin( { filename: "css/[name].css", } ),
+      new ExtractTextPlugin( { filename: 'css/[name].css', } ),
     ],
 
-    devtool: "inline-source-map"
+    devtool: 'inline-source-map'
 
-  })
+  } )
 };

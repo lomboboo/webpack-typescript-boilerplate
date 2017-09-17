@@ -1,4 +1,5 @@
 const path = require( "path" );
+const fs = require('fs');
 const webpack = require( 'webpack' );
 const autoprefixer = require( 'autoprefixer' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
@@ -6,12 +7,20 @@ const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const help = require("./config/helper");
 
-const ENV = process.env.NODE_ENV;
-const bootstraprcCustomLocation = "config/.bootstraprc-4";
-const ENV_msg = ENV === 'prod' ? 'PRODUCTION' : ( ENV === 'dev' ? 'DEVELOPMENT' : 'TEST');
+let preprocessor = null;
+let bootstrap = 4;
+let pingue_cli_config;
+try {
+  pingue_cli_config = JSON.parse(fs.readFileSync(help.root('pingue_cli.json'), 'utf8'));
+  preprocessor = pingue_cli_config.preprocessor;
+  bootstrap = pingue_cli_config.bootstrap;
+} catch (e) {
+  console.log( "No pingue_cli.json" );
+}
 
-const pingue_cli_config = require(help.root('pingue_cli.json'));
-const preprocessor = pingue_cli_config.preprocessor;
+const ENV = process.env.NODE_ENV;
+const bootstraprcCustomLocation = `config/.bootstraprc-${bootstrap}`;
+const ENV_msg = ENV === 'prod' ? 'PRODUCTION' : ( ENV === 'dev' ? 'DEVELOPMENT' : 'TEST');
 
 console.log( `--------------------------------------------------------------------------------------------------------------------` );
 console.log( `----------------------------------------------------- ${ENV_msg} ---------------------------------------------------` );
@@ -76,7 +85,7 @@ module.exports = function () {
           loaders: ["url-loader"]
         },
         {
-          test: !preprocessor ? "scss" : ( preprocessor==="scss" ? /\.scss$/ : /\.less$/ ),
+          test: !preprocessor ? /\.scss$/ : ( preprocessor==="scss" ? /\.scss$/ : /\.less$/ ),
           include: [
             help.root( "src/stylesheets" ),
           ],
