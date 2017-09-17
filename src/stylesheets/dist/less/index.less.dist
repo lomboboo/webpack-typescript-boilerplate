@@ -1,4 +1,7 @@
+@import "_variables";
+@import "_mixins";
+
 h1 {
-  color: red;
+  color: @light-green;
   text-align: center;
 }

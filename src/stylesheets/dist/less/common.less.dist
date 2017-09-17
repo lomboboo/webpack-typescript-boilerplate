@@ -14,8 +14,8 @@
 }
 
 body {
-  @include clearfix;
-  color: $def-color;
+  .clearfix;
+  color: @def-color;
 }
 
 /***********************************************/
