@@ -51,7 +51,7 @@ styles:
   mixins: true
 
   # Reset and dependencies
-  normalize: true
+  normalize: false
   print: true
 
   # Core CSS
@@ -66,7 +66,7 @@ styles:
 
   # Components
   alert: false
-  badge: false
+  badge: true
   breadcrumb: false
   button-group: true
   card: true
