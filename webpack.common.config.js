@@ -75,37 +75,6 @@ module.exports = function () {
           test: /\.(jp?g|png|gif|svg)$/,
           loaders: ["url-loader"]
         },
-/*        {
-          test: /\.less$/,
-          exclude: [
-            help.root( "src/public/font/font-awesome" ),
-          ],
-          use: ExtractTextPlugin.extract( {
-            fallbackLoader: 'style-loader',
-            use: [
-              {
-                loader: 'css-loader',
-                options: { sourceMap: true, importLoaders: 1 }
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: true,
-                  map: true,
-                  plugins: function () {
-                    return [
-                      require( 'autoprefixer' )
-                    ];
-                  }
-                }
-              },
-              {
-                loader: 'less-loader',
-                options: { sourceMap: true }
-              },
-            ]
-          } )
-        },*/
         {
           test: !preprocessor ? "scss" : ( preprocessor==="scss" ? /\.scss$/ : /\.less$/ ),
           include: [
@@ -181,6 +150,7 @@ module.exports = function () {
         Tab: "exports-loader?Tab!bootstrap/js/dist/tab",
         Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
         Util: "exports-loader?Util!bootstrap/js/dist/util",
+        Popper: 'popper.js'
       }),
       new FaviconsWebpackPlugin({
         // Your source logo

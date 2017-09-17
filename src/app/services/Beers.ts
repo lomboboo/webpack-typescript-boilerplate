@@ -10,7 +10,7 @@ export class BeersService {
   public getBeers(): Observable<object> {
     let promise: Promise<any> = Promise.resolve( $.ajax( {
       dataType: "json",
-      url: `${this.root}?page=2&per_page=80`,
+      url: `${this.root}?page=2&per_page=5`,
       method: "GET"
     } ) );
 
