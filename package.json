@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JavaScript development environment by @lomboboo",
   "scripts": {
-    "start": "NODE_ENV='dev' npm-run-all --parallel clean-build security-check webpack-dev-server test",
+    "start": "NODE_ENV='dev' npm-run-all --parallel clean-build security-check webpack-dev-server",
     "webpack-dev-server": "webpack-dev-server --config=./config/webpack.dev.config.js --inline",
     "security-check": "nsp check",
     "share": "lt --port 80 --subdomain lomboboo",
@@ -16,6 +16,7 @@
   "author": "Roman Prokopchuk",
   "license": "MIT",
   "dependencies": {
+    "autoprefixer": "^7.1.4",
     "bootstrap": "^4.0.0-alpha.6",
     "jquery": "^3.1.1",
     "lodash": "^4.17.4",
