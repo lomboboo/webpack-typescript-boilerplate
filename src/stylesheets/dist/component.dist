@@ -1,0 +1,6 @@
+@import "_variables";
+@import "_mixins";
+
+p  {
+  font-size: inherit;
+}
