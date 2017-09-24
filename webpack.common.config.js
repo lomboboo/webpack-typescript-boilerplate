@@ -2,6 +2,7 @@ const path = require( "path" );
 const fs = require('fs');
 const webpack = require( 'webpack' );
 const autoprefixer = require( 'autoprefixer' );
+const HardSourceWebpackPlugin = require( 'hard-source-webpack-plugin' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
@@ -33,7 +34,7 @@ module.exports = function () {
     entry: {
       index: [ "./index.ts" ],
       about: [ "./about.ts" ],
-      vendor: [ /*"moment",*/ "jquery"/*, "lodash", "rxjs"*/ ],
+      vendor: [ "moment", "jquery", "lodash", "rxjs" ],
       bootstrap: [ `bootstrap-loader/lib/bootstrap.loader?extractStyles&configFilePath=${__dirname}/${bootstraprcCustomLocation}!bootstrap-loader/no-op.js` ]
     },
 
@@ -47,7 +48,7 @@ module.exports = function () {
     },
 
     module: {
-      noParse: /\/node_modules\/(jquery|lodash|moment|rxjs)/,
+      noParse: /\/node_modules\/(jquery|lodash|moment)/,
       rules: [
         { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=100000000000" },
         { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000000000" },
@@ -181,6 +182,11 @@ module.exports = function () {
           yandex: false,
           windows: false
         }
+      }),
+      new HardSourceWebpackPlugin({
+        cacheDirectory: help.root( 'node_modules' ) + '/.cache/hard-source/[confighash]',
+        recordsPath: help.root( 'node_modules' ) + '/.cache/hard-source/[confighash]/records.json',
+        configHash: require('node-object-hash')({sort: false}).hash,
       })
     ],
 
