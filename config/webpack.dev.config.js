@@ -21,7 +21,7 @@ module.exports = function () {
       //stats: 'minimal',
       contentBase: help.root( 'src' ),
       compress: true,
-      stats: "minimal",
+      stats: "minimal"
       //noInfo: true
     },
 
@@ -30,7 +30,7 @@ module.exports = function () {
     },
 
     plugins: [
-      new ExtractTextPlugin( { filename: 'css/[name].css', } ),
+      new ExtractTextPlugin( { filename: 'css/[name].css' } ),
     ],
 
     devtool: 'inline-source-map'
