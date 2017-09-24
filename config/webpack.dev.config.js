@@ -20,7 +20,9 @@ module.exports = function () {
       port: port || 8000,
       //stats: 'minimal',
       contentBase: help.root( 'src' ),
-      compress: true
+      compress: true,
+      stats: "minimal",
+      //noInfo: true
     },
 
     output: {

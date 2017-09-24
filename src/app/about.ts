@@ -1,19 +1,19 @@
 import "../stylesheets/common";
 import "../stylesheets/about";
 import * as $ from "jquery";
-import { BeersService, TitleService } from "./services";
+//import { BeersService, TitleService } from "./services";
 import { ActiveMenu } from "./shared";
-import { IBeers } from "./interfaces";
+//import { IBeers } from "./interfaces";
 const currentPage = "about";
 
-const beersApi = new BeersService();
+//const beersApi = new BeersService();
 const activeMenu = new ActiveMenu();
-let beers: IBeers[];
+//let beers: IBeers[];
 
-TitleService.title = "About";
+//TitleService.title = "About";
 activeMenu.activeClass = currentPage;
 
-$( "#loadBeers" ).on( "click", () => {
+/*$( "#loadBeers" ).on( "click", () => {
 
   beersApi
     .getBeers()
@@ -25,4 +25,4 @@ $( "#loadBeers" ).on( "click", () => {
       }
     } );
 
-} );
+} );*/

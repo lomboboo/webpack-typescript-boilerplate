@@ -33,7 +33,7 @@ module.exports = function () {
     entry: {
       index: [ "./index.ts" ],
       about: [ "./about.ts" ],
-      vendor: [ "moment", "jquery", "lodash", "rxjs" ],
+      vendor: [ /*"moment",*/ "jquery"/*, "lodash", "rxjs"*/ ],
       bootstrap: [ `bootstrap-loader/lib/bootstrap.loader?extractStyles&configFilePath=${__dirname}/${bootstraprcCustomLocation}!bootstrap-loader/no-op.js` ]
     },
 
@@ -47,7 +47,7 @@ module.exports = function () {
     },
 
     module: {
-      noParse: /\/node_modules\/(jquery|lodash|moment)/,
+      noParse: /\/node_modules\/(jquery|lodash|moment|rxjs)/,
       rules: [
         { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=100000000000" },
         { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000000000" },
