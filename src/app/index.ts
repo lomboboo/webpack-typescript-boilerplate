@@ -1,6 +1,6 @@
 import "../stylesheets/common";
 import "../stylesheets/index";
-//import * as _ from "lodash";
+import * as _ from "lodash";
 import { ActiveMenu } from "./shared";
 import { TitleService } from "./services";
 const currentPage = "index";
@@ -12,4 +12,4 @@ TitleService.title = "Home";
 const ENV = process.env.NODE_ENV;
 
 console.log( `ENVIRONMENT: ${ENV}` );
-//console.log( `łąkowa na świecie brążowym =>>>> ${_.deburr( "łąkowa na świecie brążowym" )}` );
+console.log( `łąkowa na świecie brążowym =>>>> ${_.deburr( "łąkowa na świecie brążowym" )}` );
