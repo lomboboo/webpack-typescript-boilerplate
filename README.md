@@ -18,7 +18,7 @@ Javascript custom starter kit that includes:
 * [@types and NODE_ENV variables](#types-and-node_env-variables)
 
 ## Start 
-To start using this seed to need to clone or download it first.
+To start using this seed you need to clone or download it first.
 ## Get project
 ```bash
 # clone to your own project directory
