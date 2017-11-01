@@ -2,6 +2,8 @@
   <img width="440" src="https://cdn-images-1.medium.com/max/1920/1*gdoQ1_5OID90wf1eLTFvWw.png" />
 </a>
 
+# The simpliest way to use this Starter is to use [npm package pingue-cli](https://www.npmjs.com/package/pingue-cli). Github page of [pingue-cli](https://github.com/lomboboo/pingue-cli)
+
 # Webpack 2 Typescript Starter
 Javascript custom starter kit that includes:
 > [Webpack 2](https://webpack.js.org/), [TypeScript 2](http://www.typescriptlang.org/), [Istanbul](https://github.com/gotwarlost/istanbul), [Mocha](https://mochajs.org/), [Karma](https://karma-runner.github.io/), [@types](https://www.npmjs.com/~types), [TsLint](http://palantir.github.io/tslint/), [Handlebars](http://handlebarsjs.com/).
