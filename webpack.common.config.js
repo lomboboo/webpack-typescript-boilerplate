@@ -1,45 +1,47 @@
-const path = require( "path" );
-const fs = require('fs');
+const path = require( 'path' );
+const fs = require( 'fs' );
 const webpack = require( 'webpack' );
 const autoprefixer = require( 'autoprefixer' );
 const HardSourceWebpackPlugin = require( 'hard-source-webpack-plugin' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const help = require("./config/helper");
+const FaviconsWebpackPlugin = require( 'favicons-webpack-plugin' );
+const chalk = require( 'chalk' );
+
+const help = require( './config/helper' );
 
 let preprocessor = null;
 let bootstrap = 4;
 let pingue_cli_config;
 try {
-  pingue_cli_config = JSON.parse(fs.readFileSync(help.root('pingue_cli.json'), 'utf8'));
+  pingue_cli_config = JSON.parse( fs.readFileSync( help.root( 'pingue_cli.json' ), 'utf8' ) );
   preprocessor = pingue_cli_config.preprocessor;
   bootstrap = pingue_cli_config.bootstrap;
-} catch (e) {
-  console.log( "No pingue_cli.json" );
+} catch ( e ) {
+  console.log( 'No pingue_cli.json' );
 }
 
 const ENV = process.env.NODE_ENV;
 const bootstraprcCustomLocation = `config/.bootstraprc-${bootstrap}`;
 const ENV_msg = ENV === 'prod' ? 'PRODUCTION' : ( ENV === 'dev' ? 'DEVELOPMENT' : 'TEST');
 
-console.log( `--------------------------------------------------------------------------------------------------------------------` );
-console.log( `----------------------------------------------------- ${ENV_msg} ---------------------------------------------------` );
-console.log( `--------------------------------------------------------------------------------------------------------------------` );
+console.log( `${chalk.underline('Running in Environment:')} ${chalk.bold.green(ENV_msg)}` );
+
+process.noDeprecation = true;
 
 module.exports = function () {
   return {
-    context: help.root( "src/app" ),
+    context: help.root( 'src/app' ),
 
     entry: {
-      index: [ "./index.ts" ],
-      about: [ "./about.ts" ],
-      vendor: [ "moment", "jquery", "lodash", "rxjs" ],
+      index: [ './index.ts' ],
+      about: [ './about.ts' ],
+      vendor: [ 'moment', 'jquery', 'lodash', 'rxjs' ],
       bootstrap: [ `bootstrap-loader/lib/bootstrap.loader?extractStyles&configFilePath=${__dirname}/${bootstraprcCustomLocation}!bootstrap-loader/no-op.js` ]
     },
 
     output: {
-      path: help.root( "build" ),
+      path: help.root( 'build' ),
       publicPath: '/'
     },
 
@@ -50,12 +52,12 @@ module.exports = function () {
     module: {
       noParse: /\/node_modules\/(jquery|lodash|moment)/,
       rules: [
-        { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=100000000000" },
-        { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000000000" },
+        { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=100000000000' },
+        { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000000000' },
         {
           test: /\.ts$/,
           loaders: [ 'awesome-typescript-loader' ],
-          include: help.root( "src/app" )
+          include: help.root( 'src/app' )
         },
         {
           test: /\.ts$/,
@@ -69,7 +71,7 @@ module.exports = function () {
         {
           test: /\.css$/,
           exclude: [
-            help.root( "src/public/font/font-awesome" ),
+            help.root( 'src/public/font/font-awesome' ),
           ],
           use: [
             {
@@ -83,18 +85,18 @@ module.exports = function () {
         },
         {
           test: /\.(jp?g|png|gif|svg)$/,
-          loaders: ["url-loader"]
+          loaders: [ 'url-loader' ]
         },
         {
-          test: !preprocessor ? /\.scss$/ : ( preprocessor==="scss" ? /\.scss$/ : /\.less$/ ),
+          test: !preprocessor ? /\.scss$/ : ( preprocessor === 'scss' ? /\.scss$/ : /\.less$/ ),
           include: [
-            help.root( "src/stylesheets" ),
+            help.root( 'src/stylesheets' ),
           ],
           exclude: [
-            help.root( "src/public/font/font-awesome" ),
+            help.root( 'src/public/font/font-awesome' ),
           ],
           use: ExtractTextPlugin.extract( {
-            fallbackLoader: 'style-loader',
+            fallback: 'style-loader',
             use: [
               {
                 loader: 'css-loader',
@@ -113,7 +115,7 @@ module.exports = function () {
                 }
               },
               {
-                loader: !preprocessor ? "sass-loader" : ( preprocessor==="scss" ? 'sass-loader' : 'less-loader' ),
+                loader: !preprocessor ? 'sass-loader' : ( preprocessor === 'scss' ? 'sass-loader' : 'less-loader' ),
                 options: { sourceMap: true }
               },
             ]
@@ -125,44 +127,44 @@ module.exports = function () {
     plugins: [
       new HtmlWebpackPlugin( {
         filename: 'index.html',
-        chunks: [ "common", "vendor", "bootstrap", "manifest", "index" ],
-        template: help.root( "src/index.html" )
+        chunks: [ 'common', 'vendor', 'bootstrap', 'manifest', 'index' ],
+        template: help.root( 'src/index.html' )
       } ),
       new HtmlWebpackPlugin( {
         filename: 'about.html',
-        chunks: [ "common", "vendor", "bootstrap", "manifest", "about" ],
-        template: help.root( "src/about.html" )
+        chunks: [ 'common', 'vendor', 'bootstrap', 'manifest', 'about' ],
+        template: help.root( 'src/about.html' )
       } ),
       new webpack.NamedModulesPlugin(),
       new webpack.optimize.CommonsChunkPlugin( {
-        name: [ "common", "vendor", "bootstrap", "manifest" ]
+        name: [ 'common', 'vendor', 'bootstrap', 'manifest' ]
       } ),
       new webpack.DefinePlugin( {
-        "process.env": {
+        'process.env': {
           NODE_ENV: JSON.stringify( ENV )
         }
       } ),
       new webpack.ContextReplacementPlugin( /node_modules\/moment\/locale/, /pl|en-gb/ ),
-      new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery",
-        "window.jQuery": "jquery",
-        Tether: "tether",
-        "window.Tether": "tether",
-        Alert: "exports-loader?Alert!bootstrap/js/dist/alert",
-        Button: "exports-loader?Button!bootstrap/js/dist/button",
-        Carousel: "exports-loader?Carousel!bootstrap/js/dist/carousel",
-        Collapse: "exports-loader?Collapse!bootstrap/js/dist/collapse",
-        Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
-        Modal: "exports-loader?Modal!bootstrap/js/dist/modal",
-        Popover: "exports-loader?Popover!bootstrap/js/dist/popover",
-        Scrollspy: "exports-loader?Scrollspy!bootstrap/js/dist/scrollspy",
-        Tab: "exports-loader?Tab!bootstrap/js/dist/tab",
-        Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
-        Util: "exports-loader?Util!bootstrap/js/dist/util",
+      new webpack.ProvidePlugin( {
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+        Tether: 'tether',
+        'window.Tether': 'tether',
+        Alert: 'exports-loader?Alert!bootstrap/js/dist/alert',
+        Button: 'exports-loader?Button!bootstrap/js/dist/button',
+        Carousel: 'exports-loader?Carousel!bootstrap/js/dist/carousel',
+        Collapse: 'exports-loader?Collapse!bootstrap/js/dist/collapse',
+        Dropdown: 'exports-loader?Dropdown!bootstrap/js/dist/dropdown',
+        Modal: 'exports-loader?Modal!bootstrap/js/dist/modal',
+        Popover: 'exports-loader?Popover!bootstrap/js/dist/popover',
+        Scrollspy: 'exports-loader?Scrollspy!bootstrap/js/dist/scrollspy',
+        Tab: 'exports-loader?Tab!bootstrap/js/dist/tab',
+        Tooltip: 'exports-loader?Tooltip!bootstrap/js/dist/tooltip',
+        Util: 'exports-loader?Util!bootstrap/js/dist/util',
         Popper: 'popper.js'
-      }),
-      new FaviconsWebpackPlugin({
+      } ),
+      new FaviconsWebpackPlugin( {
         // Your source logo
         logo: help.root( 'src/public/meta/favicon.png' ),
         prefix: 'icons-[hash]/',
@@ -182,15 +184,15 @@ module.exports = function () {
           yandex: false,
           windows: false
         }
-      }),
-      new HardSourceWebpackPlugin({
+      } ),
+      new HardSourceWebpackPlugin( {
         cacheDirectory: help.root( 'node_modules' ) + '/.cache/hard-source/[confighash]',
         recordsPath: help.root( 'node_modules' ) + '/.cache/hard-source/[confighash]/records.json',
-        configHash: require('node-object-hash')({sort: false}).hash,
-      })
+        configHash: require( 'node-object-hash' )( { sort: false } ).hash,
+      } )
     ],
 
-    devtool: "source-map"
+    devtool: 'source-map'
   };
 
 };
