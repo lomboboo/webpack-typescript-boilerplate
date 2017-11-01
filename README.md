@@ -1,4 +1,4 @@
-> __The simpliest way to use this Starter is to use [npm package pingue-cli](https://www.npmjs.com/package/pingue-cli). Github page of [pingue-cli](https://github.com/lomboboo/pingue-cli)__
+> __The simpliest way to use this Starter is to use__ [npm package pingue-cli](https://www.npmjs.com/package/pingue-cli). Github page of [pingue-cli](https://github.com/lomboboo/pingue-cli)__
 
 <a align="center" href="https://webpack.js.org/">
   <img width="440" src="https://cdn-images-1.medium.com/max/1920/1*gdoQ1_5OID90wf1eLTFvWw.png" />
