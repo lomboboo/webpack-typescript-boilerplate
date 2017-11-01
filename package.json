@@ -4,7 +4,7 @@
   "description": "JavaScript development environment by @lomboboo",
   "scripts": {
     "start": "cross-env NODE_ENV='dev' npm-run-all --parallel clean-build security-check webpack-dev-server",
-    "webpack-dev-server": "webpack-dev-server --config=./config/webpack.dev.config.js --inline",
+    "webpack-dev-server": "webpack-dev-server --config=./config/webpack.dev.config.js",
     "security-check": "nsp check",
     "share": "lt --port 80 --subdomain lomboboo",
     "test": "cross-env NODE_ENV='test' karma start karma.conf.js",

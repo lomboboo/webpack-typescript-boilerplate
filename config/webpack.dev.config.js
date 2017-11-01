@@ -19,7 +19,7 @@ module.exports = function () {
     devServer: {
       port: port || 8000,
       //stats: 'minimal',
-      contentBase: help.root( 'src' ),
+      contentBase: help.root( 'build' ),
       compress: true,
 
       quiet: false,

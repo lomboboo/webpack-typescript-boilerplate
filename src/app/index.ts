@@ -10,5 +10,4 @@ activeMenu.activeClass = currentPage;
 TitleService.title = "Home";
 
 const ENV = process.env.NODE_ENV;
-
 console.log( `ENVIRONMENT: ${ENV}` );
