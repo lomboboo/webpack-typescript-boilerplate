@@ -1,5 +1,16 @@
-Options +MultiViews
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^\.]+)$ $1.html [NC,L]
+RewriteBase /
+
+RewriteCond %{REQUEST_URI}::$1 ^(.*?/)(.*)::\2$
+RewriteRule ^(.*)$ - [E=BASE:%1]
+
+RewriteCond %{REQUEST_METHOD} !POST
+RewriteCond %{THE_REQUEST} /(.+?)\.html[\s?] [NC]
+RewriteRule ^ %1 [R=302,L,NE]
+
+RewriteRule ^(.*)index$ %{ENV:BASE} [R=301,NC,L]
+
+# To internally forward /dir/file to /dir/file.html
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}\.html -f [NC]
+RewriteRule ^(.+?)/?$ %{ENV:BASE}$1.html [L]
+
