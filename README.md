@@ -18,7 +18,7 @@ Javascript custom starter kit that includes:
 * [@types and NODE_ENV variables](#types-and-node_env-variables)
 
 ## Start 
-To start using this seed to need to clone or download it first.
+To start using this seed you need to clone or download it first.
 ## Get project
 ```bash
 # clone to your own project directory
@@ -142,8 +142,8 @@ For **tests** ```process.env.NODE_ENV``` will have value of ```'test'```.
 * tslint - add advanced rules, look [reference](https://github.com/airbnb/javascript)
 * tests - configuration for E2E tests
 * example app - rewrite example app to solid, simple app with couple entries
-* favicon and font-awesome fix
-* IMPORTANT: production config fix LoaderOptionsPlugin
+* ~~favicon and font-awesome fix~~
+* ~~IMPORTANT: production config fix LoaderOptionsPlugin~~
 * ~~install and configure Observable~~
 * ~~add Bootstrap 4~~
 * ~~webpack config file loader for images~~
