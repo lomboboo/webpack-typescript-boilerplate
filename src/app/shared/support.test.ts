@@ -12,7 +12,7 @@ describe( "Support", () => {
       expect( msg ).to.equal( `Hello, Webpack at ${time}!` );
     } );
 
-    it( " should return modified greet", () => {
+    it( "should return modified greet", () => {
       let Roman = new HelloClass( "Roma" );
       let msg = Roman.modifyGreet();
       expect( msg ).to.be.a( "string" );

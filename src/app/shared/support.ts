@@ -16,4 +16,5 @@ export class HelloClass {
   public modifyGreet(): string {
     return `Modified: Hello, ${this.name}!`;
   }
+
 }

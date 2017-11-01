@@ -26,15 +26,18 @@ module.exports = function(config) {
     },
 
     webpackMiddleware: {
-      stats: 'errors-only'
+      stats: 'errors-only',
+      noInfo: true
     },
 
-    reporters: [ 'progress', 'coverage' ],
+    reporters: ['spec', 'coverage'],
 
     coverageReporter: {
 
       dir: 'coverage/',
       reporters: [
+        { type: 'html' },
+        { type: 'text' },
         { type: 'text-summary' }
       ]
     },

@@ -12,6 +12,7 @@ export class ActiveMenu {
   set activeClass( currentPage: string ) {
     this.nav.find(".nav-link").removeClass("active");
     this.nav.find(`.nav-link[data-current=${currentPage}]`).addClass("active");
+    this._activeClass = currentPage;
   }
 
 }
