@@ -1,14 +1,15 @@
 const path = require( "path" );
+const chalk = require( "chalk" );
 
 const help = require("./helper");
 const ENV = process.env.NODE_ENV;
 const ENV_msg = ENV === 'prod' ? 'PRODUCTION' : ( ENV === 'dev' ? 'DEVELOPMENT' : 'TEST');
-console.log( `--------------------------------------------------------------------------------------------------------------------` );
-console.log( `----------------------------------------------------- ${ENV_msg} ---------------------------------------------------` );
-console.log( `--------------------------------------------------------------------------------------------------------------------` );
+console.log( `${chalk.underline('Running in Environment:')} ${chalk.bold.green(ENV_msg)}` );
 
 module.exports = function () {
   return {
+
+    stats: "none",
 
     resolve: {
       extensions: [ '.ts', '.js' ]

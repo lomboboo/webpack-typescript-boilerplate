@@ -36,7 +36,7 @@ module.exports = function () {
     entry: {
       index: [ './index.ts' ],
       about: [ './about.ts' ],
-      vendor: [ 'moment', 'jquery', 'lodash', 'rxjs' ],
+      vendor: [ 'moment', 'jquery', 'lodash' ],
       bootstrap: [ `bootstrap-loader/lib/bootstrap.loader?extractStyles&configFilePath=${__dirname}/${bootstraprcCustomLocation}!bootstrap-loader/no-op.js` ]
     },
 

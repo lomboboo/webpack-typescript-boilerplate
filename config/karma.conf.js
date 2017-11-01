@@ -1,4 +1,5 @@
 var webpackConfig = require('./webpack.test.config')();
+var helper = require('./helper');
 module.exports = function(config) {
   config.set({
 
@@ -7,8 +8,7 @@ module.exports = function(config) {
     frameworks: ['mocha', 'chai'],
 
     files: [
-      './src/app/*.test.ts',
-      './src/app/**/*.test.ts'
+      helper.root('src/app/**/*.test.ts')
     ],
 
     exclude: [
@@ -16,13 +16,17 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      './src/app/*.ts': ['webpack', 'coverage'],
-      './src/app/**/*.ts': ['webpack', 'coverage']
+      './src/app/**/*.ts': ['webpack']
     },
 
     webpack: {
       module: webpackConfig.module,
-      resolve: webpackConfig.resolve
+      resolve: webpackConfig.resolve,
+      stats: webpackConfig.stats
+    },
+
+    webpackMiddleware: {
+      stats: 'errors-only'
     },
 
     reporters: [ 'progress', 'coverage' ],
@@ -39,7 +43,7 @@ module.exports = function(config) {
 
     colors: true,
 
-    logLevel: config.LOG_INFO,
+    logLevel: 'ERROR',
 
     autoWatch: true,
 

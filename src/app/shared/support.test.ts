@@ -6,10 +6,10 @@ describe( "Support", () => {
   describe( "Hello", () => {
 
     it( "should return greet", () => {
-      let Roman = new HelloClass( "Roma" );
-      let msg = Roman.greet();
+      let Webpack = new HelloClass( "Webpack" );
+      let msg = Webpack.greet();
       let time = moment().format( "DD MMMM YYYY" );
-      expect( msg ).to.equal( `Hello, Roma at ${time}!` );
+      expect( msg ).to.equal( `Hello, Webpack at ${time}!` );
     } );
 
     it( " should return modified greet", () => {
